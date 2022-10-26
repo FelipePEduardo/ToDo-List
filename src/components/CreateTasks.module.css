@@ -1,0 +1,109 @@
+.tasks form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tasks input[type=text] {
+  width: 90%;
+  height: 5.4rem;
+
+  padding: 1.6rem;
+
+  background-color: var(--gray-500);
+  border: 1px solid var(--gray-700);
+  border-radius: 8px;
+
+  color: var(--gray-300);
+}
+
+.tasks .createButton {
+  width: 9rem;
+  height: 5.2rem; 
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 1.6rem;
+
+  background: var(--blue-dark);
+  border: none;
+  border-radius: 8px;
+
+  font-weight: 700;
+  font-size: 1.4rem;
+
+  color: var(--gray-100);
+
+  cursor: pointer;
+  transition: background .1s;
+}
+
+.tasks .createButton:hover {
+  background: var(--blue);
+}
+
+.tasks section {
+  width: 100%;
+
+  margin-top: 6.4rem;
+}
+
+.tasks section .taskCount {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 2.4rem;
+}
+
+.tasks section .taskCount h3 {
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+.tasks section .taskCount h3:first-child {
+  color: var(--blue);
+}
+
+.tasks section .taskCount h3:last-child {
+  color: var(--purple);
+}
+
+.tasks section .taskCount h3 span {
+  margin-left: .8rem;
+  padding: .2rem .8rem;
+  
+  background: var(--gray-400);
+  
+  font-size: 1.4rem;
+  color: var(--gray-200);
+
+  border-radius: 999px;
+}
+
+/* ============== EMPTY ==================== */
+.tasks section .contentEmpty {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  padding-block: 6.4rem;
+
+  border-top: 1px solid var(--gray-400);
+  border-radius: 8px;
+}
+
+.tasks section .contentEmpty p {  
+  color: var(--gray-300);
+  margin-top: 1.6rem;
+
+  text-align: center;
+}
+
+.tasks section .contentEmpty p span {
+  display: block;
+  font-weight: 700;
+}
