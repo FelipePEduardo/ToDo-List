@@ -4,7 +4,7 @@
   gap: 8px;
 }
 
-.tasks input[type=text] {
+.tasks textarea {
   width: 90%;
   height: 5.4rem;
 
@@ -15,6 +15,7 @@
   border-radius: 8px;
 
   color: var(--gray-300);
+  font-size: 1.6rem;
 }
 
 .tasks .createButton {
@@ -41,8 +42,13 @@
   transition: background .1s;
 }
 
-.tasks .createButton:hover {
+.tasks .createButton:not(:disabled):hover {
   background: var(--blue);
+}
+
+.tasks .createButton:disabled {
+  opacity: .7;
+  cursor: not-allowed;
 }
 
 .tasks section {

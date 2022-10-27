@@ -26,9 +26,12 @@
 body {
   width: 100vw;
   min-height: 100vh;
-  
-  font-size: 1.6rem;
 
   background: var(--gray-600);
+  
+} 
+
+body, input, textarea, button {
+  font-size: 1.6rem;
   font-family: 'Inter', sans-serif;
 }

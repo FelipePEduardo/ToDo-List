@@ -1,14 +1,24 @@
 import styles from './Task.module.css'
+import { Check } from 'phosphor-react'
 
 export function Task({ content, onDeleteTask }) {
   function handleDeleteTask() {
     onDeleteTask(content) // aqui passamos o valor da key como parâmetro
   }
 
+  function handleCheckedInput(e) {
+    const isChecked = e.target.checked
+    /* console.log(isChecked) */
+  }
+
   return (
     <div className={styles.task}>
+          
+      <input type="checkbox" onChange={handleCheckedInput}/>
+      <div className={styles.checkbox}>
+        <Check className={styles.check} size={16} weight="bold" color='white'/>
+      </div>
       
-      <input type="checkbox"/>
       
       <p>{content}</p>
       
