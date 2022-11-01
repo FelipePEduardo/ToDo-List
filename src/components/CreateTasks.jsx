@@ -5,20 +5,29 @@ import { useState } from 'react'
 import styles from './CreateTasks.module.css'
 import clipboard from '../assets/Clipboard.png'
 
-/* função do botão de adicionar mais tasks foi implementada */
-
 export function CreateTasks() {
-  const [ tasks, setTasks ] = useState([])
+  const [ tasks, setTasks ] = useState([
+    {
+      id: 1,
+      content: "Tarefa 1",
+      isComplete: false
+    },
+    {
+      id: 2,
+      content: "Tarefa 2",
+      isComplete: false
+    }
+  ])
 
   const [ newTaskText, setNewTaskText ] = useState('')
 
   function handleCreateNewTask(e) {
     e.preventDefault()
 
-    setTasks([...tasks, newTaskText ])
+    setTasks([...tasks, {id: 3,content: newTaskText, isComplete: false}])
     setNewTaskText('')
   }
-
+  
   function handleNewTaskChange(e) {
     e.target.setCustomValidity('')
     setNewTaskText(e.target.value)
@@ -29,26 +38,26 @@ export function CreateTasks() {
   }
 
   function deleteTask(taskToDelete) {
-    const tasksWithoutDeletedOne = tasks.filter( task => {
-      return task !== taskToDelete
+    const tasksWithoutDeletedOne = tasks.filter(task => {
+      return task.content !== taskToDelete
     })
 
     setTasks(tasksWithoutDeletedOne)
   }
-  
+
   const tasksNumber = tasks.length
 
   const isNewTaskEmpty = newTaskText.length == 0
-
-
+  
   return (
     <div className={styles.tasks}>
-      <form>
+
+      <form onSubmit={handleCreateNewTask}>
         <textarea
-          type="text" 
-          placeholder='Adicione uma nova tarefa'
-          onChange={handleNewTaskChange}
           value={newTaskText}
+          onChange={handleNewTaskChange}
+          type="text" 
+          placeholder='Adicione uma nova tarefa'  
           onInvalid={handleNewTaskInvalid}
           required
         />
@@ -56,7 +65,6 @@ export function CreateTasks() {
         <button 
           type='submit' 
           className={styles.createButton}
-          onClick={handleCreateNewTask}
           disabled={isNewTaskEmpty}
         >Criar 
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -69,6 +77,8 @@ export function CreateTasks() {
       <section>
         <div className={styles.taskCount}> 
           <h3>Tarefas criadas<span>{tasksNumber}</span></h3>
+          
+
           <h3>Concluídas<span>0 de {tasksNumber}</span></h3>
         </div>
 
@@ -88,8 +98,9 @@ export function CreateTasks() {
             if (tasksNumber > 0) {
               return (
                 <Task 
-                  key={task}
-                  content={task}
+                  key={task.content}
+                  content={task.content}
+                  isComplete={task.isComplete}
                   onDeleteTask={deleteTask}
                 />
               )

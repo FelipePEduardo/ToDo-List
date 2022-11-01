@@ -1,20 +1,19 @@
 import styles from './Task.module.css'
 import { Check } from 'phosphor-react'
 
-export function Task({ content, onDeleteTask }) {
+export function Task({ content, isComplete , onDeleteTask }) {
   function handleDeleteTask() {
-    onDeleteTask(content) // aqui passamos o valor da key como parâmetro
-  }
-
-  function handleCheckedInput(e) {
-    const isChecked = e.target.checked
-    /* console.log(isChecked) */
+    onDeleteTask(content)
   }
 
   return (
     <div className={styles.task}>
           
-      <input type="checkbox" onChange={handleCheckedInput}/>
+      <input 
+        type="checkbox" 
+        title='Marcar ou desmarcar como tarefa concluída'
+      />
+
       <div className={styles.checkbox}>
         <Check className={styles.check} size={16} weight="bold" color='white'/>
       </div>
@@ -23,8 +22,9 @@ export function Task({ content, onDeleteTask }) {
       <p>{content}</p>
       
       <button 
-        className={styles.trashButton}
         onClick={handleDeleteTask}
+        title='Deletar comentário'
+        className={styles.trashButton}
       >
         <svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M8.20214 4.98548H6.87158V10.5073H8.20214V4.98548Z" fill="#808080"/>

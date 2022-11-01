@@ -39,6 +39,80 @@
   position: relative;
 }
 
+.task .checkbox .check {
+  display: none;
+}
+
+.task p {
+  width: 95%;
+  font-size: 1.4rem;
+  color: var(--gray-100);
+}
+
+.task .trashButton {
+  background: none;
+  border: none;
+
+  cursor: pointer;
+}
+
+/* TASK CHECKED */
+/* .taskComplete {
+  display: flex;
+  align-items: center;
+  
+  gap: 12px;
+
+  background: var(--gray-500);
+  border: 1px solid var(--gray-400);
+  border-radius: 8px;
+  
+  padding: 1.6rem;
+}
+
+.taskComplete + .taskComplete {
+  margin-top: 1.2rem;
+}
+
+.taskComplete input[type=checkbox] {
+  width: 2.4rem;
+  height: 2.4rem;
+  position: absolute;
+  z-index: 1;
+
+  opacity: 0;
+}
+
+.taskComplete .checkbox {
+  width: 2.4rem;
+  height: 2.4rem;
+
+  border: 2px solid var(--purple-dark);
+  background-color: var(--purple-dark);
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all .1s;
+  position: relative;
+}
+
+.taskComplete p {
+  width: 95%;
+  font-size: 1.4rem;
+  color: var(--gray-300);
+  text-decoration: line-through;
+}
+
+.taskComplete .trashButton {
+  background: none;
+  border: none;
+
+  cursor: pointer;
+} */
+
 .task input[type=checkbox]:checked + .checkbox + p {
   color: var(--gray-300);
   text-decoration: line-through;
@@ -55,19 +129,6 @@
 
 .task input[type=checkbox]:checked + .checkbox .check {
   display: block;
-}
-
-.task p {
-  width: 95%;
-  font-size: 1.4rem;
-  color: var(--gray-100);
-}
-
-.task .trashButton {
-  background: none;
-  border: none;
-
-  cursor: pointer;
 }
 
 .task .trashButton:hover svg path{
