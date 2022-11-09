@@ -1,10 +1,15 @@
 import styles from './Task.module.css'
 import { Check } from 'phosphor-react'
 
-export function Task({ content, isComplete , onDeleteTask }) {
+export function Task({ content, onDeleteTask, onCheckTask, index}) {
   function handleDeleteTask() {
     onDeleteTask(content)
   }
+
+  function handleCheckTask(e) {
+    onCheckTask(e, index)
+  }
+
 
   return (
     <div className={styles.task}>
@@ -12,6 +17,7 @@ export function Task({ content, isComplete , onDeleteTask }) {
       <input 
         type="checkbox" 
         title='Marcar ou desmarcar como tarefa concluída'
+        onChange={handleCheckTask}
       />
 
       <div className={styles.checkbox}>
