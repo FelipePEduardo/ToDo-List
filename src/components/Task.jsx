@@ -1,13 +1,13 @@
 import styles from './Task.module.css'
 import { Check } from 'phosphor-react'
 
-export function Task({id, content, onDeleteTask, onCheckTask, index}) {
+export function Task({id, content, onDeleteTask, onCheckTask}) {
   function handleDeleteTask() {
     onDeleteTask(id)
   }
 
   function handleCheckTask(e) {
-    onCheckTask(e, index)
+    onCheckTask(e, id)
   }
 
   return (

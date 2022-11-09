@@ -11,13 +11,11 @@ export function CreateTasks() {
   const [ tasks, setTasks ] = useState([])
 
   const [ newTaskText, setNewTaskText ] = useState('')
-
-  const [totalTasksChecked, setTotalTasksChecked] =useState(0)
   
   function handleCreateNewTask(e) {
     e.preventDefault()
 
-    setTasks([...tasks, {id: uuidv4(),content: newTaskText, isComplete: false}])
+    setTasks([...tasks, {id: uuidv4(), content: newTaskText, isComplete: false}])
     setNewTaskText('')
   }
   
@@ -39,16 +37,18 @@ export function CreateTasks() {
   }
 
   function checkTask(e, id) {
-    if(e.target.checked == true) {
-      tasks[id].isComplete = true
-    }
+    const newTasks = tasks.map(task => {
+      if (task.id === id) {
+        task.isComplete = e.target.checked;
+        return task;
+      }
+      return task;
+    });
 
-    if(e.target.checked == false) {
-      tasks[id].isComplete = false
-    }
-    
-    setTotalTasksChecked(tasks.filter(task => task.isComplete == true).length)
+    setTasks(newTasks)
   }
+
+  let tasksCompleteLength = tasks.filter(task => task.isComplete == true).length
 
   const tasksNumber = tasks.length
 
@@ -84,7 +84,7 @@ export function CreateTasks() {
           <h3>Tarefas criadas<span>{tasksNumber}</span></h3>
           
 
-          <h3>Concluídas<span>{totalTasksChecked} de {tasksNumber}</span></h3>
+          <h3>Concluídas<span>{tasksCompleteLength} de {tasksNumber}</span></h3>
         </div>
 
         <div> 
@@ -99,7 +99,7 @@ export function CreateTasks() {
               </div> 
             )
           }
-          {tasks.map( (task, index) => {
+          {tasks.map((task) => {
             if (tasksNumber > 0) {
               return (
                 <Task 
@@ -109,7 +109,6 @@ export function CreateTasks() {
                   isComplete={task.isComplete}
                   onDeleteTask={deleteTask}
                   onCheckTask={checkTask}
-                  index={index}
                 />
               )
             } 
