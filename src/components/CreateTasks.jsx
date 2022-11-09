@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 import { Task } from "./Task"
 
 import { useState } from 'react'
@@ -6,21 +8,16 @@ import styles from './CreateTasks.module.css'
 import clipboard from '../assets/Clipboard.png'
 
 export function CreateTasks() {
-  const [ tasks, setTasks ] = useState([
-    {
-      id: 1,
-      content: 'qualquer coisa',
-      isComplete: false
-    }
-  ])
-  /* console.log(tasks) */
+  const [ tasks, setTasks ] = useState([])
 
   const [ newTaskText, setNewTaskText ] = useState('')
+
+  const [totalTasksChecked, setTotalTasksChecked] =useState(0)
   
   function handleCreateNewTask(e) {
     e.preventDefault()
 
-    setTasks([...tasks, {id: 3,content: newTaskText, isComplete: false}])
+    setTasks([...tasks, {id: uuidv4(),content: newTaskText, isComplete: false}])
     setNewTaskText('')
   }
   
@@ -35,7 +32,7 @@ export function CreateTasks() {
 
   function deleteTask(taskToDelete) {
     const tasksWithoutDeletedOne = tasks.filter(task => {
-      return task.content !== taskToDelete
+      return task.id !== taskToDelete
     })
 
     setTasks(tasksWithoutDeletedOne)
@@ -44,21 +41,19 @@ export function CreateTasks() {
   function checkTask(e, id) {
     if(e.target.checked == true) {
       tasks[id].isComplete = true
-      console.log(tasks)
     }
 
     if(e.target.checked == false) {
       tasks[id].isComplete = false
-      console.log(tasks)
     }
+    
+    setTotalTasksChecked(tasks.filter(task => task.isComplete == true).length)
   }
 
   const tasksNumber = tasks.length
 
   const isNewTaskEmpty = newTaskText.length == 0
 
-  const totalTasksChecked = tasks.filter(task => task.isComplete == true).length
-  
   return (
     <div className={styles.tasks}>
 
@@ -108,7 +103,8 @@ export function CreateTasks() {
             if (tasksNumber > 0) {
               return (
                 <Task 
-                  key={task.content}
+                  key={task.id}
+                  id={task.id}
                   content={task.content}
                   isComplete={task.isComplete}
                   onDeleteTask={deleteTask}
